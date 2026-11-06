@@ -1,0 +1,25 @@
+{
+  "name": "restaurante-tarca-luis",
+  "version": "1.0.0",
+  "description": "Aplicación web completa para el Restaurante Tarca Luis en La Palma, Islas Canarias. Incluye web pública, motor de reservas inteligente y panel de administración CMS.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node -e \"require('./src/seed.js').seedDatabase()\"",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "restaurante",
+    "reservas",
+    "la-palma",
+    "canarias",
+    "cocina-canaria",
+    "admin-panel",
+    "sqlite"
+  ],
+  "author": "Tarca Luis",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

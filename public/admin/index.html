@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Administración | Restaurante Tarca Luis</title>
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+  <link rel="stylesheet" href="/admin/css/admin.css">
+</head>
+<body>
+
+  <!-- Barra Lateral (Sidebar) -->
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="sidebar-header">
+      <div style="width:38px; height:38px; background:linear-gradient(135deg, var(--color-primary), var(--color-accent)); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem;">🔥</div>
+      <div class="sidebar-brand">
+        <h2>Tarca Luis</h2>
+        <span>Panel CMS • La Palma</span>
+      </div>
+    </div>
+
+    <ul class="sidebar-menu">
+      <li class="menu-section-title">Principal</li>
+      <li><a class="sidebar-link active" data-tab="dashboard"><span class="icon">📊</span> Panel General</a></li>
+      <li><a class="sidebar-link" data-tab="reservas"><span class="icon">📅</span> Reservas</a></li>
+      <li><a class="sidebar-link" data-tab="mesas"><span class="icon">🪑</span> Mesas & Zonas</a></li>
+      
+      <li class="menu-section-title">Operaciones & Carta</li>
+      <li><a class="sidebar-link" data-tab="horarios"><span class="icon">🕒</span> Horarios & Festivos</a></li>
+      <li><a class="sidebar-link" data-tab="carta"><span class="icon">📜</span> Carta & Alérgenos</a></li>
+      <li><a class="sidebar-link" data-tab="galeria"><span class="icon">🖼️</span> Galería & Portada</a></li>
+
+      <li class="menu-section-title">Configuración</li>
+      <li><a class="sidebar-link" data-tab="ajustes"><span class="icon">⚙️</span> Datos Restaurante</a></li>
+      <li><a class="sidebar-link" data-tab="emails"><span class="icon">✉️</span> Plantillas Email</a></li>
+      <li><a class="sidebar-link" data-tab="usuarios"><span class="icon">👤</span> Seguridad & Acceso</a></li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <a href="/" target="_blank" class="sidebar-link" style="color:#e5a84b; margin-bottom:0.4rem;">
+        <span class="icon">🌐</span> Ver Web Pública ↗
+      </a>
+      <a href="#" id="btnLogout" class="sidebar-link" style="color:#e74c3c;">
+        <span class="icon">🚪</span> Cerrar Sesión
+      </a>
+    </div>
+  </aside>
+
+  <!-- Contenedor Principal -->
+  <div class="admin-main">
+    <header class="admin-topbar">
+      <div class="topbar-left">
+        <button class="btn-sidebar-toggle" id="sidebarToggleBtn" aria-label="Alternar menú lateral">☰</button>
+        <h1 class="topbar-title" id="topbarTitle">Panel General</h1>
+      </div>
+
+      <div class="topbar-right">
+        <div class="user-badge">
+          <div class="user-avatar" id="userAvatarLetter">A</div>
+          <div>
+            <strong id="topbarUserName" style="display:block; line-height:1.2; color:var(--admin-text-main);">Administrador</strong>
+            <small style="color:#888;">Gestión de Tarca Luis</small>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-body">
+      
+      <!-- ========================================================= -->
+      <!-- PESTAÑA 1: DASHBOARD GENERAL                              -->
+      <!-- ========================================================= -->
+      <section class="admin-tab-pane active" id="tab-dashboard">
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-icon" style="background:#e8f4fd; color:#2980b9;">📅</div>
+            <div class="metric-data">
+              <div class="num" id="metricTodayTotal">0</div>
+              <div class="label">Reservas Hoy</div>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon" style="background:#fef7e7; color:#d35400;">👥</div>
+            <div class="metric-data">
+              <div class="num" id="metricTodayDiners">0</div>
+              <div class="label">Comensales Hoy</div>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon" style="background:#eafaf1; color:#27ae60;">✓</div>
+            <div class="metric-data">
+              <div class="num" id="metricConfirmed">0</div>
+              <div class="label">Confirmadas</div>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon" style="background:#fef9e7; color:#f39c12;">⏳</div>
+            <div class="metric-data">
+              <div class="num" id="metricPending">0</div>
+              <div class="label">Pendientes</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">🍽️ Servicios de Hoy en Tarca Luis</h2>
+            <button class="btn btn-sm btn-primary" onclick="document.querySelector('[data-tab=reservas]').click()">Ver Todas las Reservas</button>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Hora</th>
+                  <th>Cliente</th>
+                  <th>Comensales</th>
+                  <th>Mesa Asignada</th>
+                  <th>Estado</th>
+                  <th>Acciones Rápidas</th>
+                </tr>
+              </thead>
+              <tbody id="dashboardTodayTable">
+                <tr><td colspan="6" style="text-align:center; padding:1.5rem;">Cargando servicios de hoy...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">📆 Próximas Reservas de los Próximos Días</h2>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Hora</th>
+                  <th>Cliente</th>
+                  <th>Personas</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody id="dashboardUpcomingTable">
+                <tr><td colspan="5" style="text-align:center; padding:1.5rem;">Cargando próximas reservas...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================= -->
+      <!-- PESTAÑA 2: GESTIÓN DE RESERVAS                            -->
+      <!-- ========================================================= -->
+      <section class="admin-tab-pane" id="tab-reservas">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Listado y Control de Reservas</h2>
+            <button class="btn btn-primary" id="btnNewManualRes">➕ Nueva Reserva Manual (Teléfono)</button>
+          </div>
+
+          <!-- Filtros de búsqueda -->
+          <div class="form-row" style="margin-bottom:1.5rem; align-items:flex-end;">
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Filtrar por Fecha:</label>
+              <select id="filterResDate" class="form-control">
+                <option value="today">Solo Hoy</option>
+                <option value="upcoming" selected>Próximas Reservas</option>
+                <option value="all">Histórico Completo (Todas)</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Filtrar por Estado:</label>
+              <select id="filterResStatus" class="form-control">
+                <option value="all">Todos los estados</option>
+                <option value="confirmada">Confirmada</option>
+                <option value="pendiente">Pendiente</option>
+                <option value="cancelada">Cancelada</option>
+                <option value="no_presentado">No se presentó</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom:0; flex-grow:2;">
+              <label class="form-label">Buscar por Nombre, Teléfono o Ref:</label>
+              <input type="text" id="filterResSearch" class="form-control" placeholder="Escribe para buscar al instante...">
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Ref</th>
+                  <th>Fecha & Hora</th>
+                  <th>Cliente</th>
+                  <th>Pax</th>
+                  <th>Mesa Asignada</th>
+                  <th>Estado</th>
+                  <th>Observaciones</th>
+                  <th>Gestión</th>
+                </tr>
+              </thead>
+              <tbody id="reservationsTableBody">
+                <tr><td colspan="8" style="text-align:center; padding:2rem;">Cargando reservas...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================= -->
+      <!-- PESTAÑA 3: GESTIÓN DE MESAS Y ZONAS                       -->
+      <!-- ========================================================= -->
+      <section class="admin-tab-pane" id="tab-mesas">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Distribución y Capacidad de Mesas</h2>
+              <p class="form-help">El sistema asigna la mesa óptima de forma automática evitando dobles reservas.</p>
+            </div>
+            <button class="btn btn-primary" id="btnNewTable">➕ Crear Nueva Mesa</button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre / Número de Mesa</th>
+                  <th>Zona</th>
+                  <th>Capacidad</th>
+                  <th>Estado</th>
+                  <th>Notas / Ubicación</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="tablesTableBody">
+                <tr><td colspan="7" style="text-align:center; padding:2rem;">Cargando mesas...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================= -->
+      <!-- PESTAÑA 4: HORARIOS, TURNOS Y DÍAS CERRADOS               -->
+      <!-- ========================================================= -->
+      <section class="admin-tab-pane" id="tab-horarios">
+        <!-- 1. Horarios Semanales -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Horarios Semanales por Turno (Almuerzo y Cena)</h2>
+              <p class="form-help">Indica las horas de apertura para cada día de la semana. Los días cerrados no permitirán reservas.</p>
+            </div>
+            <button class="btn btn-primary" id="btnSaveSchedules">💾 Guardar Horarios Semanales</button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Día de la Semana</th>
+                  <th>Estado</th>
+                  <th>Turno Almuerzo</th>
+                  <th>Turno Cena</th>
+                </tr>
+              </thead>
+              <tbody id="schedulesTableBody">
+                <tr><td colspan="4" style="text-align:center; padding:1.5rem;">Cargando horarios...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 2. Parámetros de Reserva -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Ajustes del Motor de Reservas</h2>
+            <button class="btn btn-primary" id="btnSaveBookingRules">💾 Guardar Parámetros</button>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="settingDuration">Duración estimada del servicio (minutos):</label>
+              <input type="number" id="settingDuration" class="form-control" value="90" min="30" max="240">
+              <small class="form-help">Tiempo que una mesa permanece ocupada por reserva antes de poder doblarse.</small>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="settingMinAdvance">Antelación mínima para reservar hoy (horas):</label>
+              <input type="number" id="settingMinAdvance" class="form-control" value="2" min="0" max="24">
+              <small class="form-help">Evita reservas automáticas de clientes cuando el servicio ya está en marcha.</small>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="settingMaxAdvance">Antelación máxima permitida (días):</label>
+              <input type="number" id="settingMaxAdvance" class="form-control" value="60" min="1" max="365">
+              <small class="form-help">Límite futuro máximo que el calendario online muestra al comensal.</small>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="settingMaxParty">Máximo comensales por reserva online:</label>
+              <input type="number" id="settingMaxParty" class="form-control" value="12" min="1" max="50">
+              <small class="form-help">Para grupos mayores, la web les pedirá llamar por teléfono.</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Días Cerrados / Vacaciones / Festivos -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Días Cerrados Especiales & Vacaciones</h2>
+          </div>
+
+          <form id="formAddClosedDate" class="form-row" style="margin-bottom:1.5rem; align-items:flex-end;">
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Fecha cerrada:</label>
+              <input type="date" id="newClosedDate" class="form-control" required>
+            </div>
+            <div class="form-group" style="margin-bottom:0; flex-grow:2;">
+              <label class="form-label">Motivo (festivo, vacaciones del personal, reformas):</label>
+              <input type="text" id="newClosedReason" class="form-control" placeholder="Ej. Fiesta de Los Llanos / Descanso anual" required>
+            </div>
+            <button type="submit" class="btn btn-secondary">Añadir Fecha Cerrada</button>
+          </form>
+
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Motivo</th>
+                  <th style="text-align:right;">Acción</th>
+                </tr>
+              </thead>
+              <tbody id="closedDatesTableBody">
+                <tr><td colspan="3" style="text-align:center; padding:1.5rem;">Cargando fechas festivas...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================= -->
+      <!-- PESTAÑA 5: CARTA, MENÚ Y ALÉRGENOS                        -->
+      <!-- ========================================================= -->
+      <section class="admin-tab-pane" id="tab-carta">
+        <div style="display:grid; grid-template-columns:300px 1fr; gap:1.5rem;">
+          <!-- Columna Categorías -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title" style="font-size:1.05rem;">Categorías de Carta</h2>
+              <button class="btn btn-sm btn-primary" id="btnNewCategory">➕ Nueva</button>
+            </div>
+            <div id="adminCategoriesList">
+              <p style="color:#888; text-align:center;">Cargando categorías...</p>
+            </div>
+          </div>
+
+          <!-- Columna Platos -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Platos de la Carta</h2>
+                <p class="form-help">Edita precios, fotos, alérgenos y cambia la disponibilidad si un producto se agota.</p>
+              </div>
+              <button class="btn btn-primary" id="btnNewDish">➕ Nuevo Plato</button>
+            </div>
+
+            <div style="margin-bottom:1.25rem; display:flex; justify-content:space-between; align-items:center;">
+              <div style="display:flex; align-items:center; gap:0.5rem;">
+                <label class="form-label" style="margin:0;">Filtrar:</label>
+                <select id="filterDishCategory" class="form-control" style="width:240px;">
+                  <option value="all">Todas las categorías</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Foto</th>
+                    <th>Plato & Descripción</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Alérgenos</th>
+                    <th>Disponibilidad</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="dishesTableBody">
+                  <tr><td colspan="7" style="text-align:center; padding:2rem;">Cargando platos...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================= -->
+      <!-- PESTAÑA 6: GALERÍA FOTOGRÁFICA Y FOTO DE PORTADA          -->
+      <!-- ========================================================= -->
+      <section class="admin-tab-pane" id="tab-galeria">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Galería de Imágenes & Foto Principal</h2>
+              <p class="form-help">Sube fotos del restaurante, comedor, terraza y platos. Puedes elegir qué foto luce como cabecera principal.</p>
+            </div>
+            <button class="btn btn-primary" id="btnUploadGalleryPhoto">📤 Subir Foto a la Galería</button>
+          </div>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:1.5rem;" id="adminGalleryGrid">
+            <p style="grid-column:1/-1; text-align:center; padding:3rem;">Cargando galería...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================= -->
+      <!-- PESTAÑA 7: DATOS DEL RESTAURANTE (CMS COMPLETO)           -->
+      <!-- ========================================================= -->
+      <section class="admin-tab-pane" id="tab-ajustes">
+        <form id="formRestaurantSettings">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Información General & Contacto</h2>
+              <button type="submit" class="btn btn-primary">💾 Guardar Todos los Cambios</button>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="setRestName">Nombre del Restaurante:</label>
+                <input type="text" id="setRestName" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="setTagline">Lema Corto:</label>
+                <input type="text" id="setTagline" class="form-control" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="setHeroSubtitle">Subtítulo de Portada:</label>
+              <textarea id="setHeroSubtitle" class="form-control" rows="2"></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="setPhone">Teléfono de Reservas:</label>
+                <input type="text" id="setPhone" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="setEmail">Email Público de Contacto:</label>
+                <input type="email" id="setEmail" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="setAdminEmail">Email de Avisos (Donde el restaurante recibe las reservas):</label>
+                <input type="email" id="setAdminEmail" class="form-control" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group" style="flex-grow:2;">
+                <label class="form-label" for="setAddress">Dirección Física:</label>
+                <input type="text" id="setAddress" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="setCity">Municipio:</label>
+                <input type="text" id="setCity" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="setPostalCode">Código Postal:</label>
+                <input type="text" id="setPostalCode" class="form-control" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group" style="flex-grow:2;">
+                <label class="form-label" for="setHeroImageUrl">Imagen Principal de Portada (Hero Image URL):</label>
+                <input type="text" id="setHeroImageUrl" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Subir nueva imagen:</label>
+                <input type="file" id="btnUploadHeroSetting" class="form-control" accept="image/*">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="setMapsIframe">Iframe Embebido de Google Maps:</label>
+              <textarea id="setMapsIframe" class="form-control" rows="3"></textarea>
+              <small class="form-help">Pega el código HTML del iframe que proporciona Google Maps en "Compartir / Incrustar un mapa".</small>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="setInstagram">Perfil de Instagram:</label>
+                <input type="url" id="setInstagram" class="form-control">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="setFacebook">Página de Facebook:</label>
+                <input type="url" id="setFacebook" class="form-control">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="setTripadvisor">Enlace de TripAdvisor:</label>
+                <input type="url" id="setTripadvisor" class="form-control">
+              </div>
+            </div>
+          </div>
+
+          <!-- Textos de Sobre Nosotros -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Textos de "Sobre Nosotros" & Tradición</h2>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="setAboutTitle">Título de la Sección:</label>
+              <input type="text" id="setAboutTitle" class="form-control">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="setAboutStory">Historia y Filosofía (Separa párrafos con doble salto de línea):</label>
+              <textarea id="setAboutStory" class="form-control" rows="6"></textarea>
+            </div>
+          </div>
+
+          <!-- Interruptor de Emergencia Reservas -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Control de Reservas Online</h2>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="setResEnabled">Estado de Reservas Online:</label>
+                <select id="setResEnabled" class="form-control">
+                  <option value="1">Activas (Los clientes pueden reservar mesa online normalmente)</option>
+                  <option value="0">Pausadas / Cerradas temporalmente</option>
+                </select>
+              </div>
+              <div class="form-group" style="flex-grow:2;">
+                <label class="form-label" for="setResDisabledMsg">Mensaje para los clientes si se pausan:</label>
+                <input type="text" id="setResDisabledMsg" class="form-control">
+              </div>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <!-- ========================================================= -->
+      <!-- PESTAÑA 8: PLANTILLAS DE EMAIL & AUDITORÍA                -->
+      <!-- ========================================================= -->
+      <section class="admin-tab-pane" id="tab-emails">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Plantillas de Notificaciones por Email</h2>
+              <p class="form-help">Variables automáticas admitidas: <code>{nombre}</code>, <code>{fecha}</code>, <code>{hora}</code>, <code>{personas}</code>, <code>{codigo}</code>, <code>{telefono}</code>, <code>{enlace_cancelar}</code>, <code>{restaurante_nombre}</code>, <code>{restaurante_telefono}</code>, <code>{restaurante_direccion}</code></p>
+            </div>
+            <div class="btn-group">
+              <button type="button" class="btn btn-secondary" id="btnTestEmail">✉️ Enviar Email de Prueba</button>
+            </div>
+          </div>
+
+          <form id="formEmailTemplates">
+            <div class="card" style="background:#faf7f2; border:1px solid #e6dfd5; padding:1.25rem;">
+              <h3 style="font-size:1.05rem; margin-bottom:1rem; color:var(--color-primary);">1. Email de Confirmación de Reserva</h3>
+              <div class="form-group">
+                <label class="form-label" for="emailConfirmSubject">Asunto del correo:</label>
+                <input type="text" id="emailConfirmSubject" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="emailConfirmBody">Cuerpo del correo:</label>
+                <textarea id="emailConfirmBody" class="form-control" rows="5" required></textarea>
+              </div>
+            </div>
+
+            <div class="card" style="background:#faf7f2; border:1px solid #e6dfd5; padding:1.25rem;">
+              <h3 style="font-size:1.05rem; margin-bottom:1rem; color:var(--color-danger);">2. Email de Cancelación de Reserva</h3>
+              <div class="form-group">
+                <label class="form-label" for="emailCancelSubject">Asunto del correo:</label>
+                <input type="text" id="emailCancelSubject" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="emailCancelBody">Cuerpo del correo:</label>
+                <textarea id="emailCancelBody" class="form-control" rows="4" required></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="margin-top:0.5rem;">💾 Guardar Plantillas de Correo</button>
+          </form>
+        </div>
+
+        <!-- Registro de auditoría de correos enviados -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Registro de Auditoría de Correos Enviados</h2>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Fecha de Envío</th>
+                  <th>Destinatario</th>
+                  <th>Tipo</th>
+                  <th>Asunto</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody id="emailLogsTableBody">
+                <tr><td colspan="5" style="text-align:center; padding:1.5rem;">Cargando registros...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================= -->
+      <!-- PESTAÑA 9: USUARIOS & SEGURIDAD                           -->
+      <!-- ========================================================= -->
+      <section class="admin-tab-pane" id="tab-usuarios">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+          <!-- Cambiar Contraseña -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Cambiar Mi Contraseña</h2>
+            </div>
+            <form id="formChangePassword">
+              <div class="form-group">
+                <label class="form-label" for="currentPassword">Contraseña Actual:</label>
+                <input type="password" id="currentPassword" class="form-control" required autocomplete="current-password">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="newPassword">Nueva Contraseña (mínimo 6 caracteres):</label>
+                <input type="password" id="newPassword" class="form-control" required minlength="6" autocomplete="new-password">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="confirmNewPassword">Confirmar Nueva Contraseña:</label>
+                <input type="password" id="confirmNewPassword" class="form-control" required minlength="6" autocomplete="new-password">
+              </div>
+              <button type="submit" class="btn btn-primary">Actualizar Contraseña</button>
+            </form>
+          </div>
+
+          <!-- Crear nuevo administrador -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Añadir Nuevo Administrador</h2>
+            </div>
+            <form id="formCreateUser">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="newUsername">Usuario:</label>
+                  <input type="text" id="newUsername" class="form-control" placeholder="Ej. maría" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="newNameUser">Nombre Completo:</label>
+                  <input type="text" id="newNameUser" class="form-control" placeholder="Ej. María Tarca" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="newEmailUser">Email:</label>
+                  <input type="email" id="newEmailUser" class="form-control" placeholder="maria@tarcaluis.es" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="newRoleUser">Rol:</label>
+                  <select id="newRoleUser" class="form-control">
+                    <option value="admin">Administrador Total</option>
+                    <option value="gestor">Gestor de Sala</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="newPasswordUser">Contraseña Inicial:</label>
+                <input type="password" id="newPasswordUser" class="form-control" required minlength="6" autocomplete="new-password">
+              </div>
+
+              <button type="submit" class="btn btn-secondary">Crear Usuario</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:1.5rem;">
+          <div class="card-header">
+            <h2 class="card-title">Usuarios con Acceso al Panel</h2>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Usuario</th>
+                  <th>Nombre</th>
+                  <th>Email</th>
+                  <th>Rol</th>
+                  <th>Fecha de Creación</th>
+                </tr>
+              </thead>
+              <tbody id="usersTableBody">
+                <tr><td colspan="6" style="text-align:center; padding:1.5rem;">Cargando usuarios...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- VENTANAS MODALES                                          -->
+  <!-- ========================================== -->
+  
+  <!-- Modal: Nueva Reserva Manual -->
+  <div class="modal-overlay" id="modalNewReservation">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>➕ Nueva Reserva Manual (Llamada telefónica o presencial)</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <form id="formNewReservation">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="manualResDate">Fecha:</label>
+              <input type="date" id="manualResDate" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="manualResTime">Hora:</label>
+              <input type="time" id="manualResTime" class="form-control" value="14:00" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="manualResParty">Comensales:</label>
+              <input type="number" id="manualResParty" class="form-control" value="2" min="1" max="30" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="manualResTable">Mesa:</label>
+            <select id="manualResTable" class="form-control">
+              <!-- Rellenado dinámicamente -->
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="manualResName">Nombre del Cliente:</label>
+              <input type="text" id="manualResName" class="form-control" placeholder="Ej. Juan Santana" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="manualResPhone">Teléfono:</label>
+              <input type="tel" id="manualResPhone" class="form-control" placeholder="+34 600 000 000" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="manualResEmail">Email del Cliente (Opcional si es por teléfono):</label>
+            <input type="email" id="manualResEmail" class="form-control" placeholder="cliente@ejemplo.com">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="manualResNotes">Peticiones o notas:</label>
+            <textarea id="manualResNotes" class="form-control" rows="2" placeholder="Trona, celíaco, mesa de terraza solicitada..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-modal-cancel">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Crear Reserva</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Crear/Editar Mesa -->
+  <div class="modal-overlay" id="modalTable">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modalTableTitle">Configurar Mesa</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <form id="formTable">
+        <input type="hidden" id="tableEditId">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="tableName">Nombre o Número de Mesa:</label>
+            <input type="text" id="tableName" class="form-control" placeholder="Ej. Mesa 6 - Terraza Jardín" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="tableMin">Capacidad Mínima:</label>
+              <input type="number" id="tableMin" class="form-control" value="1" min="1" max="20" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="tableMax">Capacidad Máxima:</label>
+              <input type="number" id="tableMax" class="form-control" value="4" min="1" max="30" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="tableZone">Zona del Restaurante:</label>
+              <select id="tableZone" class="form-control" required>
+                <option value="interior">Interior (Comedor de Tea)</option>
+                <option value="terraza">Terraza Jardín de Palmeras</option>
+                <option value="porche">Porche Rústico</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="tableActive">Estado:</label>
+              <select id="tableActive" class="form-control" required>
+                <option value="1">Activa (Disponible para reservas)</option>
+                <option value="0">Inactiva (Fuera de servicio / Bloqueada)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="tableNotes">Notas internas:</label>
+            <input type="text" id="tableNotes" class="form-control" placeholder="Ej. Junto al ventanal o chimenea">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-modal-cancel">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar Mesa</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Crear/Editar Plato -->
+  <div class="modal-overlay" id="modalDish">
+    <div class="modal-box" style="max-width:700px;">
+      <div class="modal-header">
+        <h3 id="modalDishTitle">Plato de la Carta</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <form id="formDish">
+        <input type="hidden" id="dishEditId">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group" style="flex-grow:2;">
+              <label class="form-label" for="dishName">Nombre del Plato:</label>
+              <input type="text" id="dishName" class="form-control" placeholder="Ej. Papas Arrugadas con Dúo de Mojos" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="dishCategory">Categoría:</label>
+              <select id="dishCategory" class="form-control" required>
+                <!-- Rellenado dinámicamente -->
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="dishPrice">Precio en €:</label>
+              <input type="number" step="0.10" id="dishPrice" class="form-control" placeholder="9.50" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="dishOrder">Orden en la Carta:</label>
+              <input type="number" id="dishOrder" class="form-control" value="0">
+            </div>
+            <div class="form-group" style="display:flex; align-items:center; gap:0.5rem; margin-top:1.5rem;">
+              <input type="checkbox" id="dishFeatured" style="width:18px; height:18px;">
+              <label for="dishFeatured" class="form-label" style="margin:0; cursor:pointer;">⭐ Sugerencia del Chef</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="dishDesc">Descripción apetitosa / Ingredientes:</label>
+            <textarea id="dishDesc" class="form-control" rows="2" placeholder="Ingredientes locales, punto de cocción, acompañamientos..."></textarea>
+          </div>
+
+          <!-- Foto del plato -->
+          <div class="form-row">
+            <div class="form-group" style="flex-grow:2;">
+              <label class="form-label" for="dishPhotoUrl">Foto (URL o Archivo):</label>
+              <input type="text" id="dishPhotoUrl" class="form-control" placeholder="/assets/img/plato.jpg">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Subir desde dispositivo:</label>
+              <input type="file" id="dishPhotoFile" class="form-control" accept="image/*">
+            </div>
+          </div>
+
+          <div id="dishPhotoPreviewWrap" style="display:none; margin-bottom:1rem; text-align:center;">
+            <img id="dishPhotoPreview" src="" style="max-height:120px; border-radius:8px; border:1px solid #ccc;">
+          </div>
+
+          <!-- Selector de 14 Alérgenos de la UE -->
+          <div class="form-group">
+            <label class="form-label">Alérgenos e Intolerancias (Normativa UE):</label>
+            <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(130px, 1fr)); gap:0.5rem; background:#faf7f2; padding:0.85rem; border-radius:6px; border:1px solid #e6dfd5;">
+              <label style="font-size:0.82rem; cursor:pointer;"><input type="checkbox" class="allergen-checkbox" value="gluten"> 🌾 Gluten</label>
+              <label style="font-size:0.82rem; cursor:pointer;"><input type="checkbox" class="allergen-checkbox" value="lacteos"> 🥛 Lácteos</label>
+              <label style="font-size:0.82rem; cursor:pointer;"><input type="checkbox" class="allergen-checkbox" value="huevos"> 🥚 Huevos</label>
+              <label style="font-size:0.82rem; cursor:pointer;"><input type="checkbox" class="allergen-checkbox" value="pescado"> 🐟 Pescado</label>
+              <label style="font-size:0.82rem; cursor:pointer;"><input type="checkbox" class="allergen-checkbox" value="crustaceos"> 🦐 Crustáceos</label>
+              <label style="font-size:0.82rem; cursor:pointer;"><input type="checkbox" class="allergen-checkbox" value="moluscos"> 🦪 Moluscos</label>
+              <label style="font-size:0.82rem; cursor:pointer;"><input type="checkbox" class="allergen-checkbox" value="frutos_secos"> 🥜 Frutos Cáscara</label>
+              <label style="font-size:0.82rem; cursor:pointer;"><input type="checkbox" class="allergen-checkbox" value="cacahuetes"> 🥜 Cacahuetes</label>
+              <label style="font-size:0.82rem; cursor:pointer;"><input type="checkbox" class="allergen-checkbox" value="soja"> 🌱 Soja</label>
+              <label style="font-size:0.82rem; cursor:pointer;"><input type="checkbox" class="allergen-checkbox" value="apio"> 🥬 Apio</label>
+              <label style="font-size:0.82rem; cursor:pointer;"><input type="checkbox" class="allergen-checkbox" value="mostaza"> 🟡 Mostaza</label>
+              <label style="font-size:0.82rem; cursor:pointer;"><input type="checkbox" class="allergen-checkbox" value="sesamo"> ⚪ Sésamo</label>
+              <label style="font-size:0.82rem; cursor:pointer;"><input type="checkbox" class="allergen-checkbox" value="sulfitos"> 🍷 Sulfitos</label>
+              <label style="font-size:0.82rem; cursor:pointer;"><input type="checkbox" class="allergen-checkbox" value="altramuces"> 🌼 Altramuces</label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-modal-cancel">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar Plato</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Subir Foto a la Galería -->
+  <div class="modal-overlay" id="modalGalleryUpload">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>📤 Subir Foto a la Galería</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <form id="formGalleryUpload">
+        <input type="hidden" id="galleryPhotoUrl">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="galleryPhotoFile">Selecciona imagen (JPG, PNG, WebP):</label>
+            <input type="file" id="galleryPhotoFile" class="form-control" accept="image/*" required>
+            <small class="form-help">Se optimizará y comprimirá automáticamente para cargar al instante.</small>
+          </div>
+
+          <div id="galleryPreviewWrap" style="display:none; margin-bottom:1rem; text-align:center;">
+            <img id="galleryPreviewImg" src="" style="max-height:160px; border-radius:8px; border:1px solid #ccc;">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="galleryPhotoTitle">Título / Descripción de la foto:</label>
+            <input type="text" id="galleryPhotoTitle" class="form-control" placeholder="Ej. Comedor rústico con vigas de tea" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="galleryPhotoCategory">Categoría:</label>
+            <select id="galleryPhotoCategory" class="form-control" required>
+              <option value="local">Instalaciones & Comedor</option>
+              <option value="platos">Nuestros Platos</option>
+              <option value="terraza">Terraza & Jardín</option>
+              <option value="ambiente">Brasas & Fuego</option>
+            </select>
+          </div>
+
+          <div class="form-group" style="display:flex; align-items:center; gap:0.5rem;">
+            <input type="checkbox" id="galleryPhotoIsHero" style="width:18px; height:18px;">
+            <label for="galleryPhotoIsHero" class="form-label" style="margin:0; cursor:pointer;">
+              ⭐ Establecer directamente como imagen principal de portada (Hero)
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-modal-cancel">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Subir y Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Script del Panel de Control -->
+  <script src="/admin/js/admin.js"></script>
+</body>
+</html>

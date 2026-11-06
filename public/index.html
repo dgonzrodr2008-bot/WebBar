@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>Restaurante Tarca Luis | Cocina Canaria, Brasas & Tradición en La Palma</title>
+  <meta name="description" content="Restaurante Tarca Luis en Los Llanos de Aridane (La Palma, Islas Canarias). Auténtica gastronomía palmera, carnes a la brasa, papas arrugadas con mojos y pescados frescos. Reserva tu mesa online.">
+  <meta name="keywords" content="restaurante la palma, comer en la palma, tarca luis, cocina canaria, carnes a la brasa, papas arrugadas, queso asado, los llanos de aridane, islas canarias">
+  <meta name="author" content="Restaurante Tarca Luis">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Redes Sociales -->
+  <meta property="og:type" content="restaurant">
+  <meta property="og:title" content="Restaurante Tarca Luis | Tradición Palmera y Brasas">
+  <meta property="og:description" content="El sabor más auténtico de La Palma: carnes al carbón, mojos artesanos, papas bonitas y pesca del día en un entorno rústico y acogedor.">
+  <meta property="og:image" content="/assets/img/hero.jpg">
+  <meta property="og:url" content="https://tarcaluis.es">
+  <meta property="og:locale" content="es_ES">
+
+  <!-- Favicon e Iconos -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+
+  <!-- Fuentes Tipográficas Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Hojas de Estilo -->
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/lightbox.css">
+
+  <!-- Schema.org Datos Estructurados JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Restaurante Tarca Luis",
+    "image": "https://tarcaluis.es/assets/img/hero.jpg",
+    "description": "Auténtica cocina canaria y carnes a la brasa en Los Llanos de Aridane, La Palma.",
+    "servesCuisine": ["Canaria", "Española", "Carnes a la brasa", "Pescados frescos"],
+    "priceRange": "€€",
+    "telephone": "+34922401234",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle Real 14",
+      "addressLocality": "Los Llanos de Aridane",
+      "addressRegion": "La Palma, Santa Cruz de Tenerife",
+      "postalCode": "38760",
+      "addressCountry": "ES"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 28.65839,
+      "longitude": -17.91986
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "13:00",
+        "closes": "16:30"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "19:30",
+        "closes": "23:00"
+      }
+    ],
+    "acceptsReservations": "True"
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Barra Superior Informativa -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-item" id="topTodayStatus">
+        <span class="pulse-dot"></span>
+        <span>Abierto hoy para almuerzos y cenas</span>
+      </div>
+      <div class="top-bar-info">
+        <div class="top-bar-item">
+          <span>📍</span>
+          <span class="js-rest-address">Calle Real 14, Los Llanos de Aridane, La Palma</span>
+        </div>
+        <div class="top-bar-item">
+          <span>📞</span>
+          <a href="tel:+34922401234" class="js-rest-phone" style="color:#dfd7cf; font-weight:600;">+34 922 40 12 34</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navegación Principal -->
+  <header class="header-nav">
+    <div class="container">
+      <a href="#inicio" class="logo-brand">
+        <div class="logo-emblem">🔥</div>
+        <div class="logo-text">
+          <h1 class="js-rest-name">Tarca Luis</h1>
+          <span>La Palma • Canarias</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+          <li><a href="#carta">Nuestra Carta</a></li>
+          <li><a href="#reservas">Reservas</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#contacto">Contacto & Horarios</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#reservas" class="btn btn-primary btn-sm">Reservar Mesa</a>
+        <button class="mobile-toggle" id="mobileMenuToggle" aria-label="Abrir menú móvil">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. Portada / Hero -->
+  <section class="hero-section" id="inicio">
+    <img src="/assets/img/hero.jpg" alt="Restaurante Tarca Luis en La Palma" class="hero-bg" id="heroBgImage">
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span>🌴 La Palma • Islas Canarias</span>
+        </div>
+        <h2 class="hero-title">Restaurante Tarca Luis</h2>
+        <p class="hero-tagline" id="heroSubtitle">
+          El sabor auténtico de La Palma entre tradición, brasas y el Atlántico. Platos canarios elaborados con el corazón y productos de nuestra tierra volcánica.
+        </p>
+
+        <div class="hero-cta">
+          <a href="#reservas" class="btn btn-primary">Reservar Mesa Online</a>
+          <a href="#carta" class="btn btn-secondary">Explorar la Carta</a>
+        </div>
+
+        <div class="hero-features">
+          <div class="hero-feat-item">
+            <div class="hero-feat-icon">🥩</div>
+            <div class="hero-feat-text">
+              <h4>Brasas Tradicionales</h4>
+              <p>Leña noble y carbón vegetal</p>
+            </div>
+          </div>
+          <div class="hero-feat-item">
+            <div class="hero-feat-icon">🧀</div>
+            <div class="hero-feat-text">
+              <h4>Queso Palmero D.O.</h4>
+              <p>Ahumado artesanal insular</p>
+            </div>
+          </div>
+          <div class="hero-feat-item">
+            <div class="hero-feat-icon">🍷</div>
+            <div class="hero-feat-text">
+              <h4>Vinos de La Palma</h4>
+              <p>Malvasías y caldos volcánicos</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Sobre Nosotros -->
+  <section class="about-section" id="sobre-nosotros">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-images-composition">
+          <img src="/assets/img/galeria-comedor.jpg" alt="Comedor rústico con vigas de tea" class="about-img-main" loading="lazy">
+          <div class="about-floating-card">
+            <div class="num">+30</div>
+            <p>Años preservando las recetas familiares y la cocina canaria en el Valle de Aridane.</p>
+          </div>
+        </div>
+
+        <div class="about-text">
+          <div class="section-tag">Nuestras Raíces</div>
+          <h2 class="section-title" id="aboutStoryTitle">Tradición, Fuego y Producto Palmero</h2>
+          <div id="aboutStoryText">
+            <p>
+              En el corazón del Valle de Aridane, "Tarca Luis" nació como un homenaje a la cocina de nuestras abuelas palmeras y a la lumbre de las brasas tradicionales.
+            </p>
+            <p>
+              Regentado por la familia Tarca desde hace más de tres décadas, cada plato refleja el respeto absoluto por el producto autóctono: cabrito criado en las cumbres de la isla, verduras ecológicas de Puntagorda, papas bonitas con sal marina virgen de Fuencaliente y pescados recién desembarcados en el Puerto de Tazacorte.
+            </p>
+          </div>
+
+          <div class="about-highlights">
+            <div class="highlight-box">
+              <h4>🥔 Mojos Caseros Diarios</h4>
+              <p>Mortero de piedra tradicional: picón de pimienta picona y verde de cilantro fresco.</p>
+            </div>
+            <div class="highlight-box">
+              <h4>🌳 Madera de Tea y Piedra</h4>
+              <p>Comedor rústico con muros volcánicos y terraza con palmeras para disfrutar del clima insular.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Carta / Menú -->
+  <section class="menu-section" id="carta">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Gastronomía Canaria</div>
+        <h2 class="section-title">Nuestra Carta</h2>
+        <p class="section-desc">Platos elaborados al momento con ingredientes frescos de la isla y recetas transmitidas de generación en generación.</p>
+      </div>
+
+      <!-- Filtros por categoría -->
+      <div class="category-tabs" id="categoryTabs">
+        <!-- Rellenado dinámicamente -->
+      </div>
+
+      <!-- Cuadrícula de Platos -->
+      <div class="dishes-grid" id="dishesGrid">
+        <!-- Rellenado dinámicamente -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Sistema de Reservas -->
+  <section class="reservation-section" id="reservas">
+    <div class="container">
+      <div class="section-header" style="color:var(--color-white);">
+        <div class="section-tag" style="background:rgba(229,168,75,0.2); color:var(--color-accent); border:1px solid rgba(229,168,75,0.3);">Mesa Garantizada</div>
+        <h2 class="section-title" style="color:var(--color-white);">Reserva tu Mesa en Tarca Luis</h2>
+        <p class="section-desc" style="color:#d9cfc5;">Asignación automática de mesa según comensales y disponibilidad en tiempo real.</p>
+      </div>
+
+      <div class="reservation-box">
+        <!-- Alerta de validación o error -->
+        <div id="resFormAlert" style="display:none; background:#f8d7da; color:#721c24; padding:0.9rem; border-radius:8px; margin-bottom:1.5rem; font-size:0.92rem;"></div>
+
+        <!-- Formulario principal -->
+        <form id="reservationForm">
+          <!-- Campo trampa invisible para spam / bots -->
+          <input type="text" name="website_trap" id="resTrap" style="display:none;" tabindex="-1" autocomplete="off">
+          <input type="hidden" id="resTime" required>
+
+          <div class="form-grid">
+            <!-- 1. Número de personas -->
+            <div class="form-group">
+              <label class="form-label" for="resParty">👥 Número de Comensales</label>
+              <select id="resParty" class="form-control" required>
+                <option value="1">1 Persona</option>
+                <option value="2" selected>2 Personas</option>
+                <option value="3">3 Personas</option>
+                <option value="4">4 Personas</option>
+                <option value="5">5 Personas</option>
+                <option value="6">6 Personas</option>
+                <option value="7">7 Personas</option>
+                <option value="8">8 Personas</option>
+                <option value="9">9 Personas</option>
+                <option value="10">10 Personas</option>
+                <option value="11">11 Personas</option>
+                <option value="12">12 Personas (Grupo)</option>
+              </select>
+            </div>
+
+            <!-- 2. Fecha -->
+            <div class="form-group">
+              <label class="form-label" for="resDate">📅 Fecha de la Reserva</label>
+              <input type="date" id="resDate" class="form-control" required>
+            </div>
+
+            <!-- 3. Selector de Horas disponibles (Dinámico) -->
+            <div class="form-group full-width">
+              <label class="form-label">🕒 Selecciona la Hora del Servicio</label>
+              <div id="slotsContainer">
+                <p style="color:var(--color-text-muted); font-size:0.9rem;">Cargando disponibilidad...</p>
+              </div>
+            </div>
+
+            <!-- 4. Nombre -->
+            <div class="form-group">
+              <label class="form-label" for="resName">👤 Nombre y Apellidos</label>
+              <input type="text" id="resName" class="form-control" placeholder="Ej. Elena Morales Santana" required>
+            </div>
+
+            <!-- 5. Teléfono -->
+            <div class="form-group">
+              <label class="form-label" for="resPhone">📱 Teléfono de Contacto</label>
+              <input type="tel" id="resPhone" class="form-control" placeholder="Ej. +34 600 000 000" required>
+            </div>
+
+            <!-- 6. Email -->
+            <div class="form-group full-width">
+              <label class="form-label" for="resEmail">✉️ Correo Electrónico (Para recibir el justificante y enlace de cancelación)</label>
+              <input type="email" id="resEmail" class="form-control" placeholder="Ej. tuemail@ejemplo.com" required>
+            </div>
+
+            <!-- 7. Notas / Alergias -->
+            <div class="form-group full-width">
+              <label class="form-label" for="resNotes">📝 Peticiones Especiales o Alergias (Opcional)</label>
+              <textarea id="resNotes" class="form-control" rows="2" placeholder="Alergias o intolerancias, celebración de cumpleaños, trona para bebé, preferencia de terraza si hay disponible..."></textarea>
+            </div>
+
+            <!-- 8. Control Anti-spam -->
+            <div class="form-group full-width">
+              <div class="anti-spam-box">
+                <div>
+                  <strong style="color:var(--color-primary-dark); font-size:0.95rem;">🛡️ Control de Seguridad:</strong>
+                  <span id="captchaQuestion" style="font-weight:700; margin-left:0.5rem; color:var(--color-volcanic);">Cargando...</span>
+                  <input type="hidden" id="captchaToken">
+                </div>
+                <div style="display:flex; align-items:center; gap:0.5rem;">
+                  <label for="captchaAnswer" style="font-size:0.85rem; font-weight:600;">Tu respuesta:</label>
+                  <input type="number" id="captchaAnswer" class="form-control" style="width:90px; text-align:center; padding:0.4rem;" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group full-width" style="margin-top:1rem; text-align:center;">
+              <button type="submit" id="btnSubmitReservation" class="btn btn-primary" style="width:100%; max-width:400px; padding:1rem;">
+                Confirmar Reserva de Mesa
+              </button>
+              <p style="font-size:0.8rem; color:var(--color-text-muted); margin-top:0.75rem;">
+                🔒 No solicitamos tarjeta bancaria. Confirmación inmediata por email.
+              </p>
+            </div>
+          </div>
+        </form>
+
+        <!-- Contenedor de confirmación exitosa -->
+        <div id="reservationSuccessBox" style="display:none;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Galería de Fotos -->
+  <section class="gallery-section" id="galeria">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Rincón Palmero</div>
+        <h2 class="section-title">El Local y Nuestra Cocina</h2>
+        <p class="section-desc">Haz clic sobre cualquier imagen para ampliarla y disfrutar de los detalles de nuestro comedor y creaciones.</p>
+      </div>
+
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Rellenado dinámicamente -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Contacto y Ubicación -->
+  <section class="contact-section" id="contacto">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Encuéntranos</div>
+        <h2 class="section-title">Ubicación & Horarios</h2>
+        <p class="section-desc">Estamos situados en una zona privilegiada de La Palma, con fácil aparcamiento y encanto canario.</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Datos de contacto y Horarios -->
+        <div class="contact-card">
+          <h3 style="font-size:1.5rem; margin-bottom:1rem; color:var(--color-volcanic);">Restaurante Tarca Luis</h3>
+          
+          <ul class="contact-info-list">
+            <li class="contact-info-item">
+              <div class="contact-info-icon">📍</div>
+              <div class="contact-info-text">
+                <strong>Dirección:</strong>
+                <p class="js-rest-address">Calle Real 14, 38760 Los Llanos de Aridane, La Palma</p>
+              </div>
+            </li>
+            <li class="contact-info-item">
+              <div class="contact-info-icon">📞</div>
+              <div class="contact-info-text">
+                <strong>Teléfono de reservas e información:</strong>
+                <a href="tel:+34922401234" class="js-rest-phone" style="font-weight:700; color:var(--color-primary);">+34 922 40 12 34</a>
+              </div>
+            </li>
+            <li class="contact-info-item">
+              <div class="contact-info-icon">✉️</div>
+              <div class="contact-info-text">
+                <strong>Correo electrónico:</strong>
+                <a href="mailto:info@tarcaluis.es" class="js-rest-email">info@tarcaluis.es</a>
+              </div>
+            </li>
+          </ul>
+
+          <h4 style="font-size:1.15rem; margin-bottom:0.75rem; border-top:1px solid var(--color-cream-dark); padding-top:1.25rem;">
+            🕒 Horario Semanal de Apertura
+          </h4>
+          <table class="schedule-table">
+            <tbody id="scheduleTableBody">
+              <!-- Rellenado dinámicamente -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Mapa interactivo de Google Maps -->
+        <div class="map-container" id="googleMapContainer">
+          <!-- Rellenado dinámicamente -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pie de Página / Footer -->
+  <footer class="footer-main">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="logo-brand" style="margin-bottom:1rem;">
+            <div class="logo-emblem">🔥</div>
+            <div class="logo-text">
+              <h2 style="font-size:1.4rem; color:#fff;" class="js-rest-name">Tarca Luis</h2>
+              <span style="color:var(--color-accent);">La Palma • Canarias</span>
+            </div>
+          </div>
+          <p class="js-rest-tagline">
+            Auténtica cocina canaria y brasas con alma palmera. Sabores arraigados en nuestra tierra volcánica.
+          </p>
+          <div class="social-links">
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-btn js-social-instagram" aria-label="Instagram">📸</a>
+            <a href="https://facebook.com" target="_blank" rel="noopener" class="social-btn js-social-facebook" aria-label="Facebook">📘</a>
+            <a href="https://tripadvisor.es" target="_blank" rel="noopener" class="social-btn js-social-tripadvisor" aria-label="TripAdvisor">🦉</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navegación</h4>
+          <ul class="footer-links">
+            <li><a href="#inicio">Portada</a></li>
+            <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+            <li><a href="#carta">Nuestra Carta</a></li>
+            <li><a href="#reservas">Reservar Mesa</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#contacto">Contacto & Ubicación</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Especialidades</h4>
+          <ul class="footer-links">
+            <li><a href="#carta">Papas con Dúo de Mojos</a></li>
+            <li><a href="#carta">Queso Palmero a la Brasa</a></li>
+            <li><a href="#carta">Carne de Cabra Estofada</a></li>
+            <li><a href="#carta">Cherne Fresco de Tazacorte</a></li>
+            <li><a href="#carta">Príncipe Alberto Casero</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contacto Rápido</h4>
+          <p>
+            <strong class="js-rest-address">Los Llanos de Aridane, La Palma</strong><br><br>
+            Tel: <a href="tel:+34922401234" class="js-rest-phone" style="color:#fff; font-weight:700;">+34 922 40 12 34</a><br>
+            Email: <span class="js-rest-email">info@tarcaluis.es</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Restaurante Tarca Luis. Todos los derechos reservados. La Palma, Islas Canarias, España.</p>
+        <p>
+          <a href="/admin" class="admin-lock-link">
+            <span>🔒 Panel de Administración</span>
+          </a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Visor Lightbox -->
+  <div class="lightbox-modal" id="lightboxModal">
+    <button class="lightbox-close-btn" id="lightboxClose" aria-label="Cerrar visor">✕</button>
+    <button class="lightbox-nav-btn lightbox-prev" id="lightboxPrev" aria-label="Foto anterior">‹</button>
+    <button class="lightbox-nav-btn lightbox-next" id="lightboxNext" aria-label="Siguiente foto">›</button>
+    <div class="lightbox-content-wrap">
+      <img src="" alt="" class="lightbox-img" id="lightboxImg">
+    </div>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/js/reservas.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>
